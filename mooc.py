@@ -13,7 +13,7 @@ def getHTMLText(url):
 
 def parsePage(ilt,title,html):
     try:
-        hurl = re.findall(r'http\:\/\/v\.stu\.126\.net\/mooc-video\/nos\/mp4\S+', html)
+        hurl = re.findall(r'http\:\/\/jdvodrvfb210d\.vod\.126\.net\/mooc-video\/nos\/mp4\S+', html)
         for i in range(len(hurl)):
             url = hurl[i].split('>')[0]
             ilt.append(url)
