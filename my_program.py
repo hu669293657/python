@@ -5,7 +5,7 @@ passwd='kqpathdrxwjlbeig'                                   #填入发送方邮�
 msg_to='669293657@qq.com'                                       #收件人邮箱
 
 subject="域名解析警告"                                     #主题
-content="域名暂不可用,请检查配置~"
+content="域名暂不可用,请检查配置~"                          #内容
 msg = MIMEText(content)
 msg['Subject'] = subject
 msg['From'] = msg_from
